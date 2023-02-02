@@ -13,6 +13,11 @@ export class BlogService {
     return posts;
   }
 
+  async getPost(postID): Promise<Post> {
+    const post = await this.postModel.findById(postID).exec();
+    return post;
+  }
+
   async addPost(createPostDTO: CreatePostDTO): Promise<Post> {
     const newPost = new this.postModel(createPostDTO);
     return newPost.save();
